@@ -1,5 +1,3 @@
-
-```python    
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -117,4 +115,3 @@ time_end=time.time()
 print("done:",time_end-time_start)
 f.close()
 #plt.show()
-```
