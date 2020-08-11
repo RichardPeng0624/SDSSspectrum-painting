@@ -36,7 +36,7 @@ for i in range(0,len(groupid)):
     m=0
     for j in range(i,i+len(df.specname)):
         if os.path.exists(path+'%s'%df.specname[j])==True:
-            #-----open fits and convert wavelength to wavelength in rest-frame
+            #-----open fits and convert wavelength to wavelength in rest-frame,and remove the and_mask values
             spectra = fits.open(path+specname[j])[1].data
             ind = np.where((spectra['and_mask'] == 0) & (spectra['flux'] >= 0),True,False)
             ind1 = np.where((spectra['flux'] >= 0),True,False)
@@ -57,7 +57,7 @@ for i in range(0,len(groupid)):
             else:
                 x=0
             cc=colorlist[0+m-x]
-            #-----smooth
+            #-----smooth,use Fourier low pass filter but maybe the Fourier convolution method is better
             s=fft(flux)
             u=len(s)
             v=300
